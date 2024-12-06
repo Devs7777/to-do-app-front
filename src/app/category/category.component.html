@@ -1,0 +1,25 @@
+<ion-card>
+  <ion-card-content>
+    <div class="add-category">
+      <ion-input 
+        placeholder="Nueva categoría..." 
+        [(ngModel)]="newCategoryName"
+        type="text">
+      </ion-input>
+      <ion-button (click)="onAddCategory()" color="dark" fill="solid">Agregar</ion-button>
+    </div>
+
+    <ion-list>
+      <ion-item button (click)="filterAll()" class="category-item">
+        <ion-label>Todas</ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let cat of categories" button (click)="filterCategory.emit(cat.id)" class="category-item">
+        <ion-label>{{cat.name}}</ion-label>
+        <ion-button fill="clear" color="danger" (click)="removeCategory.emit(cat); $event.stopPropagation()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

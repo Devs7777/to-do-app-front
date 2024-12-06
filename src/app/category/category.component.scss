@@ -1,0 +1,37 @@
+:host {
+    ion-card {
+      background: #3a3a3a;
+      border-radius: 20px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+  
+    .add-category {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+  
+    ion-input {
+      background: #2b2b2b;
+      border-radius: 20px;
+      color: #ffffff;
+      --placeholder-color: #bbbbbb;
+      padding: 8px;
+      flex: 1;
+    }
+  
+    ion-button {
+      border-radius: 20px;
+    }
+  
+    ion-item.category-item {
+      background: #2b2b2b;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+  }
+  

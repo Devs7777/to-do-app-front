@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <h1>Categorías</h1>
+    <app-categories 
+      [categories]="categories" 
+      (filterCategory)="filterTasksByCategory($event)"
+      (addCategory)="addCategory($event)" 
+      (removeCategory)="removeCategory($event)">
+    </app-categories>
+
+    <h1>Tareas</h1>
+    <app-tasks 
+      [tasks]="filteredTasks"
+      [categories]="categories"
+      (toggleTask)="toggleTaskCompletion($event)" 
+      (removeTask)="removeTask($event)" 
+      (addTask)="addTask($event.title, $event.categoryId)">
+    </app-tasks>
+  </div>
+</ion-content>
