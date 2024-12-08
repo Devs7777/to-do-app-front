@@ -1,11 +1,13 @@
 <ion-card>
   <ion-card-content>
+    
     <div class="add-task">
       <ion-input 
         placeholder="Nueva tarea..." 
         [(ngModel)]="newTaskTitle"
         type="text">
       </ion-input>
+      
       <ion-select 
         [(ngModel)]="newTaskCategoryId" 
         placeholder="Categoría" 
@@ -13,6 +15,7 @@
         okText="OK">
         <ion-select-option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</ion-select-option>
       </ion-select>
+      
       <ion-button (click)="onAddTask()" color="dark" fill="solid">
         Agregar
       </ion-button>
@@ -26,9 +29,10 @@
               <ion-label>{{task.title}}</ion-label>
             </div>
             <div class="task-actions">
-              <ion-button fill="solid" color="success" (click)="toggleTask.emit(task)">
-                {{ task.completed ? 'Desmarcar' : 'Marcar' }}
-              </ion-button>
+              <ion-checkbox
+                [(ngModel)]="task.completed"
+                (ionChange)="onToggleTaskCompletion(task)">
+              </ion-checkbox>
               <ion-button fill="solid" color="primary" (click)="startEditing(task)">
                 Editar
               </ion-button>

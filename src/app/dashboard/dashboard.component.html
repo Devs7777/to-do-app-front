@@ -8,12 +8,15 @@
   <div class="container">
 
     <h1>Categorías</h1>
-    <app-categories 
-      [categories]="categories" 
-      (filterCategory)="filterTasksByCategory($event)"
-      (addCategory)="addCategory($event)" 
-      (removeCategory)="removeCategory($event)">
-    </app-categories>
+    <app-categories
+    [categories]="categories"
+    [tasks]="tasks"
+    (filterCategory)="filterTasksByCategory($event)"
+    (addCategory)="addCategory($event)"
+    (removeCategory)="removeCategory($event)"
+    (editCategory)="editCategory($event)">
+  </app-categories>
+  
 
     <h1>Tareas</h1>
     <app-tasks 

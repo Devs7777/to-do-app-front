@@ -13,17 +13,17 @@
     margin-bottom: 16px;
 
     ion-input, ion-select {
+      text-indent: 10px;
       background: #2b2b2b;
-      border-radius: 20px;
       color: #ffffff;
+      text-align: left;
       --placeholder-color: #bbbbbb;
-      padding: 8px;
     }
 
     ion-button {
-      border-radius: 20px;
       background: #4b4b4b;
       color: #ffffff;
+      border-radius: 20px;
     }
   }
 
@@ -41,29 +41,40 @@
       text-decoration: line-through;
       opacity: 0.7;
     }
+  }
 
-    ion-button {
-      border-radius: 20px;
+  .task-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-      &[color="primary"] {
-        --background: #0066cc;
-        color: #ffffff;
-      }
+  ion-checkbox {
+    --size: 24px;
+    margin-right: 10px;
+  }
 
-      &[color="danger"] {
-        --background: #8B0000;
-        color: #ffffff;
-      }
+  ion-button {
+    border-radius: 20px;
 
-      &[color="success"] {
-        --background: #228B22;
-        color: #ffffff;
-      }
+    &[color="primary"] {
+      --background: #0066cc;
+      color: #ffffff;
+    }
 
-      &[color="medium"] {
-        --background: #6c757d;
-        color: #ffffff;
-      }
+    &[color="danger"] {
+      --background: #8B0000;
+      color: #ffffff;
+    }
+
+    &[color="success"] {
+      --background: #228B22;
+      color: #ffffff;
+    }
+
+    &[color="medium"] {
+      --background: #6c757d;
+      color: #ffffff;
     }
   }
 }
