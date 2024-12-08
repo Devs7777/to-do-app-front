@@ -75,9 +75,16 @@ export class DashboardComponent implements OnInit {
 
   removeCategory(cat: Category) {
     this.categories = this.categories.filter(c => c.id !== cat.id);
-    // Si la categoría removida estaba seleccionada, se limpia el filtro.
     if (this.selectedCategoryId === cat.id) {
       this.selectedCategoryId = null;
+    }
+  }
+
+  editTask(event: { id: number, title: string, categoryId?: number }) {
+    const index = this.tasks.findIndex(t => t.id === event.id);
+    if (index !== -1) {
+      this.tasks[index].title = event.title;
+      this.tasks[index].categoryId = event.categoryId;
     }
   }
 }

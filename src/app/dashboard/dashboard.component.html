@@ -6,6 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <div class="container">
+
     <h1>Categorías</h1>
     <app-categories 
       [categories]="categories" 
@@ -20,7 +21,9 @@
       [categories]="categories"
       (toggleTask)="toggleTaskCompletion($event)" 
       (removeTask)="removeTask($event)" 
-      (addTask)="addTask($event.title, $event.categoryId)">
+      (addTask)="addTask($event.title, $event.categoryId)"
+      (editTask)="editTask($event)">
     </app-tasks>
+
   </div>
 </ion-content>

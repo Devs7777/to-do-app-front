@@ -6,7 +6,6 @@
         [(ngModel)]="newTaskTitle"
         type="text">
       </ion-input>
-
       <ion-select 
         [(ngModel)]="newTaskCategoryId" 
         placeholder="Categoría" 
@@ -14,19 +13,52 @@
         okText="OK">
         <ion-select-option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</ion-select-option>
       </ion-select>
-
-      <ion-button (click)="onAddTask()" color="dark" fill="solid">Agregar</ion-button>
+      <ion-button (click)="onAddTask()" color="dark" fill="solid">
+        Agregar
+      </ion-button>
     </div>
 
     <ion-list>
       <ion-item *ngFor="let task of tasks" [class.completed]="task.completed">
-        <ion-label>{{task.title}}</ion-label>
-        <ion-button fill="clear" color="light" (click)="toggleTask.emit(task)">
-          <ion-icon name="checkmark-circle-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" color="danger" (click)="removeTask.emit(task)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
+        <ng-container *ngIf="editingTaskId !== task.id; else editMode">
+          <div class="task-content">
+            <div class="task-description">
+              <ion-label>{{task.title}}</ion-label>
+            </div>
+            <div class="task-actions">
+              <ion-button fill="solid" color="success" (click)="toggleTask.emit(task)">
+                {{ task.completed ? 'Desmarcar' : 'Marcar' }}
+              </ion-button>
+              <ion-button fill="solid" color="primary" (click)="startEditing(task)">
+                Editar
+              </ion-button>
+              <ion-button fill="solid" color="danger" (click)="confirmDelete(task)">
+                Eliminar
+              </ion-button>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #editMode>
+          <div class="edit-container">
+            <ion-input [(ngModel)]="editingTaskTitle" placeholder="Editar título..." type="text"></ion-input>
+            <ion-select 
+              [(ngModel)]="editingTaskCategoryId" 
+              placeholder="Categoría" 
+              cancelText="Cancelar" 
+              okText="OK">
+              <ion-select-option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</ion-select-option>
+            </ion-select>
+          </div>
+          <div class="edit-actions">
+            <ion-button fill="solid" color="success" (click)="saveEditing()">
+              Guardar
+            </ion-button>
+            <ion-button fill="solid" color="medium" (click)="cancelEditing()">
+              Cancelar
+            </ion-button>
+          </div>
+        </ng-template>
       </ion-item>
     </ion-list>
   </ion-card-content>

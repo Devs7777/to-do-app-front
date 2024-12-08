@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms'; // Importamos FormsModule
+import { FormsModule } from '@angular/forms'; 
 
 interface Category {
   id: number;
@@ -16,7 +16,7 @@ interface Category {
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule // Lo agregamos a los imports
+    FormsModule 
   ]
 })
 export class CategoriesComponent {
