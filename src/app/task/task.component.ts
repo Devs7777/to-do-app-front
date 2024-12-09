@@ -96,15 +96,15 @@ export class TasksComponent {
   // Confirms task deletion via an alert before emitting the delete event
   async confirmDelete(task: Task) {
     const alert = await this.alertController.create({
-      header: 'Confirm', // Title of the alert dialog
-      message: 'Are you sure you want to delete this task?', // Confirmation message
+      header: 'Confirmar', // Title of the alert dialog
+      message: 'Esta seguro de eliminar esta tarea?', // Confirmation message
       buttons: [
         {
-          text: 'Cancel', // Cancel button
+          text: 'Cancelar', // Cancel button
           role: 'cancel', // Role for cancel action
         },
         {
-          text: 'Delete', // Delete button
+          text: 'Eliminar', // Delete button
           handler: () => {
             this.removeTask.emit(task); // Emits the task to be deleted
           }

@@ -103,15 +103,15 @@ export class CategoriesComponent {
   // Asks for confirmation before deleting a category
   async confirmDeleteCategory(cat: Category) {
     const alert = await this.alertController.create({
-      header: 'Confirm', // Title of the alert
-      message: `Are you sure you want to delete the category "${cat.name}"? This will also delete all tasks assigned to this category.`,
+      header: 'Confirmar', // Title of the alert
+      message: `¿Estás seguro de que quieres eliminar la categoría "${cat.name}"? Esto también eliminará todas las tareas asignadas a esta categoría.`,
       buttons: [
         {
-          text: 'Cancel', // Button to cancel deletion
+          text: 'Cancelar', // Button to cancel deletion
           role: 'cancel',
         },
         {
-          text: 'Delete', // Button to confirm deletion
+          text: 'Eliminar', // Button to confirm deletion
           handler: () => {
             this.removeCategory.emit(cat); // Emits the category to be deleted
           }

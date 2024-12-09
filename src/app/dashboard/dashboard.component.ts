@@ -29,15 +29,15 @@ interface Category {
 export class DashboardComponent implements OnInit {
   // Initial list of tasks
   tasks: Task[] = [
-    { id: 1, title: 'Buy bread', completed: false, categoryId: 1 },
-    { id: 2, title: 'Exercise', completed: false, categoryId: 2 },
-    { id: 3, title: 'Read a book', completed: true, categoryId: 1 },
+    { id: 1, title: 'compra pan', completed: false, categoryId: 1 },
+    { id: 2, title: 'ejercitate', completed: false, categoryId: 2 },
+    { id: 3, title: 'lee un libro', completed: true, categoryId: 1 },
   ];
 
   // Initial list of categories
   categories: Category[] = [
-    { id: 1, name: 'Home' },
-    { id: 2, name: 'Health' },
+    { id: 1, name: 'casa' },
+    { id: 2, name: 'salud' },
   ];
 
   // Tracks the currently selected category for filtering tasks
