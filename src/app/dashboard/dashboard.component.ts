@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { TasksComponent } from '../task/task.component';
 import { CategoriesComponent } from '../category/category.component';
+import { RemoteConfigService } from '../services/remote-config.service'; // Import the Remote Config service
 
 // Interface defining the structure of a Task
 interface Task {
@@ -24,28 +25,34 @@ interface Category {
   selector: 'app-dashboard', // Selector for this component
   templateUrl: './dashboard.component.html', // HTML template for the component
   styleUrls: ['./dashboard.component.scss'], // Styles for the component
-  imports: [CommonModule, IonicModule, TasksComponent, CategoriesComponent] // Dependencies imported for use
+  imports: [CommonModule, IonicModule, TasksComponent, CategoriesComponent] // Imported dependencies for use
 })
 export class DashboardComponent implements OnInit {
   // Initial list of tasks
   tasks: Task[] = [
-    { id: 1, title: 'compra pan', completed: false, categoryId: 1 },
-    { id: 2, title: 'ejercitate', completed: false, categoryId: 2 },
-    { id: 3, title: 'lee un libro', completed: true, categoryId: 1 },
+    { id: 1, title: 'buy bread', completed: false, categoryId: 1 },
+    { id: 2, title: 'exercise', completed: false, categoryId: 2 },
+    { id: 3, title: 'read a book', completed: true, categoryId: 1 },
   ];
 
   // Initial list of categories
   categories: Category[] = [
-    { id: 1, name: 'casa' },
-    { id: 2, name: 'salud' },
+    { id: 1, name: 'home' },
+    { id: 2, name: 'health' },
   ];
 
   // Tracks the currently selected category for filtering tasks
   selectedCategoryId: number | null = null;
 
-  constructor() {}
+  // Variable to control the visibility of the Task component
+  showTask: boolean = false;
 
-  ngOnInit() {}
+  constructor(private remoteConfigService: RemoteConfigService) {}
+
+  async ngOnInit() {
+    // Initialize Remote Config and set the visibility of the TaskComponent
+    this.showTask = await this.remoteConfigService.initializeRemoteConfig();
+  }
 
   // Updates the selected category to filter tasks
   filterTasksByCategory(categoryId: number | null) {
@@ -58,7 +65,7 @@ export class DashboardComponent implements OnInit {
     return this.tasks.filter(t => t.categoryId === this.selectedCategoryId); // Filter tasks by category
   }
 
-  // Adds a new task to the task list
+  // Adds a new task to the list of tasks
   addTask(title: string, categoryId?: number) {
     const newTask: Task = {
       id: this.tasks.length + 1, // Generate a unique ID
@@ -74,12 +81,12 @@ export class DashboardComponent implements OnInit {
     task.completed = !task.completed;
   }
 
-  // Removes a task from the task list
+  // Removes a task from the list of tasks
   removeTask(task: Task) {
     this.tasks = this.tasks.filter(t => t.id !== task.id);
   }
 
-  // Adds a new category to the category list
+  // Adds a new category to the list of categories
   addCategory(name: string) {
     const newCategory = { id: this.categories.length + 1, name };
     this.categories.push(newCategory);
@@ -96,7 +103,7 @@ export class DashboardComponent implements OnInit {
     this.tasks = this.tasks.filter(t => t.categoryId !== cat.id); // Remove tasks linked to the deleted category
   }
 
-  // Edits a task's title and category
+  // Edits the title and category of a task
   editTask(event: { id: number, title: string, categoryId?: number }) {
     const index = this.tasks.findIndex(t => t.id === event.id); // Find the task by ID
     if (index !== -1) {
@@ -105,7 +112,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // Edits a category's name
+  // Edits the name of a category
   editCategory(event: { id: number, name: string }) {
     const index = this.categories.findIndex(c => c.id === event.id); // Find the category by ID
     if (index !== -1) {
